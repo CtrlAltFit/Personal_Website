@@ -54,7 +54,9 @@ const skillsSection = {
     emoji(
       "⚡ Design and implement scalable data pipelines for processing and analyzing large datasets"
     ),
-    emoji("⚡ Develop data ingestion and ETL processes to extract, transform, and load data from various sources"),
+    emoji(
+      "⚡ Develop data ingestion and ETL processes to extract, transform, and load data from various sources"
+    ),
     emoji(
       "⚡ Utilize cloud platforms like Google Cloud Platform, or AWS for deploying and managing data solutions"
     )
