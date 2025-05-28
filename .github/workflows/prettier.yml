@@ -20,6 +20,7 @@ jobs:
       - name: Install 🔧 # Install dependencies
         run: |
           npm install
+        working-directory: ./
       
       - name: Check Format
         run: |
