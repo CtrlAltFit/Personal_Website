@@ -21,7 +21,7 @@ const illustration = {
 
 const greeting = {
   username: "CtrlAltFit",
-  title: "Hi all, I'm Mhd",
+  title: "Hi all, I'm Mehdi",
   subTitle: emoji(
     "A dedicated Data Engineer 🚀 with expertise in designing and implementing data pipelines, optimizing data workflows, and ensuring efficient data storage and retrieval. Experienced in leveraging tools like Python to turn raw data into actionable insights.."
   ),
@@ -317,12 +317,6 @@ const blogSection = {
       url: "/blogs/my-first-blog.html",
       title: "Just Move Forward",
       description: "A Philosophy Against Paralysis"
-    },
-    {
-      url: "https://medium.com/@saadpasta/why-react-is-the-best-5a97563f423e",
-      title: "Why REACT i The Best?",
-      description:
-        "React is a JavaScript library for building User Interface. It is maintained by Facebook and a community of individual developers and companies."
     }
   ],
   display: true // Set false to hide this section, defaults to true
