@@ -128,10 +128,10 @@ const educationInfo = {
   display: true, // Set false to hide this section, defaults to true
   schools: [
     {
-      schoolName: "Harvard University",
-      logo: require("./assets/images/harvardLogo.png"),
-      subHeader: "Master of Science in Computer Science",
-      duration: "September 2017 - April 2019",
+      schoolName: "Paris Cité University",
+      logo: require("./assets/images/ParisCiteLogo.png"),
+      subHeader: "Master’s Degree in Machine Learning",
+      duration: "September 2023 - September 2024",
       desc: "Participated in the research of XXX and published 3 papers.",
       descBullets: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
@@ -139,10 +139,10 @@ const educationInfo = {
       ]
     },
     {
-      schoolName: "Stanford University",
-      logo: require("./assets/images/stanfordLogo.png"),
-      subHeader: "Bachelor of Science in Computer Science",
-      duration: "September 2013 - April 2017",
+      schoolName: "School of Information Sciences",
+      logo: require("./assets/images/EsiLogo.png"),
+      subHeader: "Engineering Degree in Data Engineering",
+      duration: "September 2020 - September 2023",
       desc: "Ranked top 10% in the program. Took courses about Software Engineering, Web Security, Operating Systems, ...",
       descBullets: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit"]
     }
@@ -155,16 +155,16 @@ const techStack = {
   viewSkillBars: true, //Set it to true to show Proficiency Section
   experience: [
     {
-      Stack: "Frontend/Design", //Insert stack or technology you have experience in
-      progressPercentage: "90%" //Insert relative proficiency in percentage
+      Stack: "Data Infrastructure & Architecture", //Insert stack or technology you have experience in
+      progressPercentage: "30%" //Insert relative proficiency in percentage
     },
     {
-      Stack: "Backend",
-      progressPercentage: "70%"
+      Stack: "Programming & Data Processing",
+      progressPercentage: "50%"
     },
     {
-      Stack: "Programming",
-      progressPercentage: "60%"
+      Stack: "Data Management & Quality",
+      progressPercentage: "20%"
     }
   ],
   displayCodersrank: false // Set true to display codersrank badges section need to changes your username in src/containers/skillProgress/skillProgress.js:17:62, defaults to false
@@ -315,7 +315,7 @@ const blogSection = {
   blogs: [
     {
       url: "/blogs/my-first-blog.html",
-      title: "Just Move Forward",
+      title: "Just Move",
       description: "A Philosophy Against Paralysis"
     }
   ],
