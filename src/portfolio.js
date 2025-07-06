@@ -176,29 +176,37 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
-      role: "Software Engineer",
-      company: "Facebook",
-      companylogo: require("./assets/images/facebookLogo.png"),
-      date: "June 2018 – Present",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      role: "Data Engineer",
+      company: "CGI",
+      companylogo: require("./assets/images/cgiLogo.png"),
+      date: "March 2024 – June 2025",
+      desc: "Participation in the development of a data ingestion framework focused on SQL and SSIS.",
       descBullets: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "Design of SQL stored procedures for set-based data processing (cleaning, typing, deduplication, validation)",
+        "Construction of ingestion and transformation pipelines for a modular data warehouse (STG → ODS → DWH → DTM → SSAS Cubes)"
       ]
     },
     {
-      role: "Front-End Developer",
-      company: "Quora",
-      companylogo: require("./assets/images/quoraLogo.png"),
-      date: "May 2017 – May 2018",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      role: "Data Scientist",
+      company: "OCP Group",
+      companylogo: require("./assets/images/ocpLogo.png"),
+      date: "February 2023 – July 2023",
+      desc: "Designed a perception system for an autonomous truck by fusing data from a camera and a LiDAR.",
+      descBullets: [
+        "Developed data fusion algorithms to combine camera and LiDAR information.",
+        "Implemented an obstacle detection system, including classification and distance measurement."
+      ]
     },
     {
-      role: "Software Engineer Intern",
-      company: "Airbnb",
-      companylogo: require("./assets/images/airbnbLogo.png"),
-      date: "Jan 2015 – Sep 2015",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      role: "Data Scientist",
+      company: "TGR",
+      companylogo: require("./assets/images/tgrLogo.png"),
+      date: "June 2022 – August 2022",
+      desc: "Applied data science techniques to extract meaningful insights and trends.",
+      descBullets: [
+        "Collected log files from various sources and systems.",
+        "Used data analysis tools to extract relevant insights from log files."
+      ]
     }
   ]
 };
@@ -241,7 +249,7 @@ const bigProjects = {
       ]
     }
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: false // Set false to hide this section, defaults to true
 };
 
 // Achievement Section
@@ -302,7 +310,7 @@ const achievementSection = {
       ]
     }
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: false // Set false to hide this section, defaults to true
 };
 
 // Blogs Section
@@ -338,7 +346,7 @@ const talkSection = {
       event_url: "https://www.facebook.com/events/2339906106275053/"
     }
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: false // Set false to hide this section, defaults to true
 };
 
 // Podcast Section
@@ -351,7 +359,7 @@ const podcastSection = {
   podcast: [
     "https://anchor.fm/codevcast/embed/episodes/DevStory---Saad-Pasta-from-Karachi--Pakistan-e9givv/a-a15itvo"
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: false // Set false to hide this section, defaults to true
 };
 
 const contactInfo = {
