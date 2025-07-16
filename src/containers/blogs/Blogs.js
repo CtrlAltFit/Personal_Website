@@ -91,6 +91,24 @@ export default function Blogs() {
                   );
                 })}
           </div>
+          {/* Add this block below */}
+          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+            <a
+              href="/blogs"
+              className="more-blogs-btn"
+              style={{
+                display: "inline-block",
+                padding: "0.75rem 2rem",
+                background: "#0077cc",
+                color: "#fff",
+                borderRadius: "6px",
+                textDecoration: "none",
+                fontWeight: "bold"
+              }}
+            >
+              More Blogs
+            </a>
+          </div>
         </div>
       </div>
     </Fade>
