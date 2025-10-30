@@ -325,6 +325,16 @@ const blogSection = {
       url: "/blogs/my-first-blog.html",
       title: "Just Move",
       description: "A Philosophy Against Paralysis"
+    },
+    {
+      url: "/blogs/the-most-sublime-hysteric-blog.html",
+      title: "The Most Sublime Hysteric",
+      description: "What if the contradictions themselves are the truth?"
+    },
+    {
+      url: "/blogs/A-World-of-Alienation.html",
+      title: "A World of Alienation",
+      description: "What Makes Work Meaningful in a World of Alienation?"
     }
   ],
   display: true // Set false to hide this section, defaults to true
