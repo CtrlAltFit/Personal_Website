@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Building a Production-Grade Azure Data Pipeline</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background-color: #fdfdfd;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .blog-image {
+      display: block;
+      margin: 0 auto 2rem auto;
+      max-width: 80%;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+    .subtitle {
+      text-align: center;
+      color: #777;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    h2 {
+      font-size: 1.4rem;
+      color: #222;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      border-left: 4px solid #0078d4;
+      padding-left: 0.75rem;
+    }
+    p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+    }
+    .quote-block {
+      border-left: 3px solid #ccc;
+      margin: 1.5rem 0;
+      padding: 0.5rem 1.25rem;
+      color: #555;
+      font-style: italic;
+      background-color: #f9f9f9;
+      border-radius: 0 6px 6px 0;
+    }
+    .blog-meta {
+      margin-top: 2rem;
+      border-top: 1px solid #eee;
+      padding-top: 1rem;
+      color: #666;
+      font-size: 0.95rem;
+      text-align: right;
+      font-style: italic;
+    }
+    .blog-meta time {
+      font-weight: 600;
+      color: #444;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Building a Production-Grade Azure Data Pipeline</h1>
+    <p class="subtitle">An Industry-Level NYC Taxi Project on the Azure Cloud Platform</p>
+
+    <img src="/blogs/Azure.png" alt="Azure Data Pipeline Banner" class="blog-image" />
+
+    <p>Data engineering is no longer a niche skill — it's the backbone of every data-driven organization. In this project walkthrough, I tackle a real-world, production-grade pipeline using the NYC Taxi open dataset, one of the most popular datasets in the industry for its scale and complexity. Rather than relying on manual uploads, this project automates everything — from API ingestion to visual dashboards — entirely on the Azure cloud.</p>
+
+    <div class="quote-block">
+      "The goal is to replicate what you'd actually build on the job: dynamic, automated, secure, and scalable."
+    </div>
+
+    <h2>The Foundation: Medallion Architecture</h2>
+
+    <p>Before writing a single line of code, I designed the system around the Medallion Architecture — an industry-standard framework that organizes data into three progressive layers: Bronze (raw), Silver (transformed), and Gold (curated). This layered approach ensures data quality at every stage, makes debugging straightforward, and allows teams to reprocess data without starting from scratch. All three layers are stored in Azure Data Lake Storage Gen2, which uses Hierarchical Namespaces to keep files neatly organized.</p>
+
+    <h2>Phase 1: Dynamic Ingestion with Azure Data Factory</h2>
+
+    <p>I used Azure Data Factory to fetch data directly from the NYC Taxi public API — automating ingestion for every month of the year. The pipeline uses a ForEach activity to loop through months one through twelve, constructing the correct API URL for each iteration.</p>
+
+    <p>There's a real-world complexity to solve here: the URL format changes depending on the month. For months 1–9, the API requires a leading zero, while months 10–12 do not. An If Condition activity inside the pipeline handles this branching logic — a small but critical detail that, if overlooked, silently breaks nine months of ingestion. The ingested data is saved in Parquet format directly into the Bronze layer of ADLS Gen2.</p>
+
+    <h2>Phase 2: Transformation with Azure Databricks & PySpark</h2>
+
+    <p>With raw data sitting in the Bronze layer, the pipeline moves into transformation using Azure Databricks — Microsoft's managed Apache Spark environment built for large-scale data processing. Rather than exposing global credentials, I authenticated Databricks to ADLS Gen2 using a Service Principal. This follows the principle of least privilege, granting the cluster only the specific permissions it needs. This is how it's done in production environments.</p>
+
+    <p>On the transformation side, three decisions stand out. Recursive File Lookup automatically reads all files across nested directories — no hardcoded paths. Instead of letting Spark infer the schema at runtime, which is slow and error-prone at scale, I defined explicit StructType schemas upfront for reliability. Finally, split functions and date utilities clean and reshape the data — separating compound columns and extracting year and month from timestamps. The cleaned output lands in the Silver layer, ready for the final stage.</p>
+
+    <h2>Phase 3: Delta Lake and the Gold Layer</h2>
+
+    <p>The Gold layer is where data matures into its most refined form. Here, I converted Silver Parquet into Delta Lake format — and that distinction matters. Delta Lake brings database-like reliability to a data lake: every insert, update, or delete is tracked in a transaction log, creating a full audit trail of changes that raw Parquet files simply cannot provide.</p>
+
+    <p>More practically, if a bad transformation corrupts records, the RESTORE command rolls the table back to any prior version — turning a potential incident into a two-line fix. I also used External (Unmanaged) Tables throughout, meaning the data lives in ADLS Gen2 rather than inside Databricks. If the workspace is ever deleted or recreated, the data remains safe and immediately accessible.</p>
+
+    <h2>Phase 4: Serving Data with Power BI</h2>
+
+    <p>A pipeline that never reaches a stakeholder is incomplete infrastructure. The final phase connects the Gold layer Delta tables directly to Power BI using Databricks Partner Connect and a Personal Access Token establishing a secure, live query connection between the two platforms. The result is a set of interactive dashboards built directly on top of the NYC Taxi data — trip volumes by month, fare trends, popular pickup zones, and seasonal demand patterns. No data exports. No stale reports. The dashboard queries the lake directly.</p>
+
+    <p>End-to-end, this project covers what a data engineer actually builds in the field. Every design decision — Parquet over CSV, Service Principals over admin keys, Delta over raw Parquet, external tables over managed — reflects production engineering practice. The NYC Taxi dataset is just the vehicle. The architecture is what transfers.</p>
+
+    <footer class="blog-meta">
+      <time datetime="2026-03-11">March 11, 2026</time>
+    </footer>
+  </div>
+</body>
+</html>
+<!-- End of azure-data-pipeline-blog.html -->
