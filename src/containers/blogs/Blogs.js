@@ -92,7 +92,7 @@ export default function Blogs() {
                 })}
           </div>
           {/* Add this block below */}
-          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+          <div style={{textAlign: "center", marginTop: "2rem"}}>
             <a
               href="/blogs"
               className="more-blogs-btn"
